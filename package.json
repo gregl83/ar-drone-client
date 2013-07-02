@@ -1,0 +1,28 @@
+{
+  "author": {
+    "name": "Gregory Langlais",
+    "email": "general@gregorylanglais.com"
+  },
+  "name": "ar-drone-client",
+  "description": "Client for operating the AR Drone 2 Parrot.",
+  "keywords": ["ar-drone", "ar drone", "parrot", "client"],
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gregl83/ar-drone-client"
+  },
+  "main": "index",
+  "dependencies": {
+    "express": "3.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "0.10.x"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
