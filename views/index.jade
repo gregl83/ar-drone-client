@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div
+      | <img src="/api/frontCam" />
+      | <a href="/api/takeoff">takeoff</a>
+      | <a href="/api/land">land</a>
+      | <a href="/api/stop">stop</a>
