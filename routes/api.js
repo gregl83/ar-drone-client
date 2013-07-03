@@ -39,9 +39,8 @@ exports.stop = function(req, res){
  */
 
 exports.frontCam = function(req, res){
-  /*var stream = client.createPngStream({log: console.log});
-  stream.data(function(buffer) {
+  var stream = client.getPngStream({log: console.log});
+  stream.on('data', function(buffer) {
     res.write(buffer);
-  });*/
-  res.send();
+  });
 };
