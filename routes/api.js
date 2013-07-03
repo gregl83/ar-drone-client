@@ -8,9 +8,9 @@ var client = arDrone.createClient();
  * GET api takeoff.
  */
 
-exports.takeoff = function(req, res){
+exports.takeoff = function() {
+  console.log('>> takeoff motherfuckers');
   client.takeoff();
-  res.json({result: true});
 };
 
 
@@ -18,9 +18,8 @@ exports.takeoff = function(req, res){
  * GET api land.
  */
 
-exports.land = function(req, res){
+exports.land = function() {
   client.land();
-  res.json({result: true});
 };
 
 
@@ -28,9 +27,8 @@ exports.land = function(req, res){
  * GET api stop.
  */
 
-exports.stop = function(req, res){
+exports.stop = function() {
   client.stop();
-  res.json({result: true});
 };
 
 
