@@ -5,11 +5,14 @@
  */
 
 var express = require('express')
+  , http = require('http')
   , io = require('socket.io')
   , routes = require('./routes')
+  , controls = require('./lib/control')
   , api = require('./routes/api')
-  , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , debug = require('debug')('ar-drone-client');
+
 
 var app = express();
 var server = http.createServer(app);
@@ -22,8 +25,8 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(app.router);
 
 // development only
 if ('development' == app.get('env')) {
@@ -33,26 +36,19 @@ if ('development' == app.get('env')) {
 // express routes
 app.get('/', routes.index);
 
-
 app.get('/api/frontCam', api.frontCam);
-
 
 // socket.io server
 io = io.listen(server);
 
-
 // socket.io connections
 io.sockets.on('connection', function (socket) {
-  socket.emit('connected', {result: true});
-
-  // TODO separate express/socket.io routes
-  socket.on('takeoff', api.takeoff);
-  socket.on('land', api.land);
-  socket.on('stop', api.stop);
+  socket.on('command', function (cmd) {
+    controls[cmd.command]();
+  });
 });
 
-
 // express server
-server.listen(app.get('port'), function(){
+server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
